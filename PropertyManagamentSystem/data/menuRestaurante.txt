@@ -1,0 +1,27 @@
+Desayuno Especial;Huevos revueltos con tocino, salchichas, frijoles y arepa;35000;True;07:00 - 11:00
+Waffles con frutas;Waffles con frutas frescas de temporada, miel y crema batida;30000;False;07:00 - 11:00
+Desayuno Vegetariano;Tortilla de verduras, tostadas, aguacate y ensalada de frutas;27000;True;07:00 - 11:00
+Huevos Benedict;Huevos pochados, jamón, pan inglés y salsa holandesa;33000;False;07:00 - 11:00
+Panqueques;Deliciosos panqueques con mantequilla y jarabe de arce;24000;True;07:00 - 11:00
+Bandeja Paisa;Carne molida, arroz, frijoles, chorizo, aguacate, arepa y huevo frito;48000;False;12:00 - 15:00
+Cazuela de mariscos;Sopa de mariscos con arroz y plátano maduro;56000;False;12:00 - 15:00
+Pollo a la parrilla;Pollo a la parrilla con ensalada y arroz;44000;True;12:00 - 15:00
+Hamburguesa de la casa;Hamburguesa con tocino, queso cheddar, cebolla caramelizada, lechuga y tomate, servida con papas fritas;51000;True;12:00 - 15:00
+Pizza Margherita;Pizza con salsa de tomate, mozzarella fresca y albahaca;44000;True;12:00 - 15:00
+Ceviche;Plato de ceviche de pescado y mariscos, acompañado de tostadas;67000;False;18:00 - 21:00
+Costillas BBQ;Costillas de cerdo a la BBQ con puré de papas y ensalada;59000;True;18:00 - 21:00
+Fettuccine Alfredo;Pasta fettuccine con salsa Alfredo y pollo;51000;False;18:00 - 21:00
+Pescado frito;Pescado frito con papas fritas y ensalada;67000;False;18:00 - 21:00
+Asado de tira;Asado de tira con puré de papas y vegetales;45000;True;18:00 - 21:00
+Tres Leches;Tarta de tres leches con chantilly y frutas;10000;True;12:00 - 21:00
+Cheesecake de fresa;Cheesecake cremoso con salsa de fresa;12000;False;12:00 - 21:00
+Flan de caramelo;Postre tradicional colombiano de flan de caramelo;6000;True;12:00 - 21:00
+Helado de vainilla;Helado de vainilla con salsa de chocolate;7000;True;07:00 - 21:00
+Café;Café recién hecho;3000;True;07:00 - 21:00
+Té;Té caliente en agua;4000;True;07:00 - 21:00
+Té Helado;Té Helado con hierbas y endulzado con panela;5000;True;07:00 - 20:00
+Jugo de frutas naturales;Jugo de frutas recién exprimidas;4000;True;08:00 - 20:00
+Refresco;Refresco de Manzana;6000;True;07:00 - 21:00
+Agua embotellada;Agua embotellada de manantial;2500;True;07:00 - 21:00
+Cerveza;Cerveza artesanal;7000;False;12:00 - 21:00
+Vino tinto;Vino tinto de la casa;12000;False;12:00 - 21:00
