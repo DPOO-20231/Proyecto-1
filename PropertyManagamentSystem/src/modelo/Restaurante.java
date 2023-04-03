@@ -124,7 +124,7 @@ public class Restaurante extends Consumible {
 		}
 		
 	}
-	//TODO: Hacer que finalizar pedido tambien realize el registro del consumo.
+	//TODO: Hacer que finalizar pedido tambien realize el registro del consumo
 	public void finalizarPedido(){
 		for(Producto p: pedidoEnCurso) {
 			int precioActual = getPrecioTotal();
