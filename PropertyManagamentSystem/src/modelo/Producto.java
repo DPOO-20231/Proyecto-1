@@ -37,6 +37,30 @@ public class Producto {
 		return disponibleHabitacion;
 	}
 	
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
+	public void setDisponibleHabitacion(boolean disponibleHabitacion) {
+		this.disponibleHabitacion = disponibleHabitacion;
+	}
+
+	public void setPrecio(int precio) {
+		this.precio = precio;
+	}
+
+	public void setInicioDisponible(LocalTime inicioDisponible) {
+		this.inicioDisponible = inicioDisponible;
+	}
+
+	public void setFinDisponible(LocalTime finDisponible) {
+		this.finDisponible = finDisponible;
+	}
+
 	public LocalTime getInicioDisponible() {
 		return inicioDisponible;
 	}

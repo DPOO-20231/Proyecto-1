@@ -9,5 +9,14 @@ public class PropertyManagamentSystem {
 	private ArrayList<Reserva> ConsultaReserva;
 	private Administrador Admin;
 	private ArrayList<Recepcionista> opcionesRecepcionista;
-	private ArrayList<Empleado> opcionesEmpleado;	
+	private ArrayList<Empleado> opcionesEmpleado;
+	
+	
+	public ArrayList<Habitacion> getHabitaciones(){
+		return habitaciones;
+	}
+	
+	public ArrayList<Consumible> getServicios(){
+		return servicios;
+	}
 }

@@ -3,19 +3,15 @@ package modelo;
 public class Usuario {
 	private String nombre;
 	private String Id;
-	private String Correo;
 	protected String Password;
-	private String Contacto;
-	private String Rol;
+	protected PropertyManagamentSystem PMS;
 	
-	public Usuario(String name, String id, String correo, String password, String contacto, String rol) {
+	public Usuario(String name, String id, String correo, String password, String rol, PropertyManagamentSystem pms) {
 		super();
 		nombre = name;
 		Id = id;
-		Correo = correo;
 		Password = password;
-		Contacto = contacto;
-		Rol = rol;
+		PMS = pms;
 	}
 
 	public String getPassword() {
@@ -29,10 +25,5 @@ public class Usuario {
 	public String getId() {
 		return Id;
 	}
-
-	public String getCorreo() {
-		return Correo;
-	}
-	
 	
 }

@@ -19,8 +19,8 @@ public class Restaurante extends Consumible {
 //	    restaurante.consultarMenu(true);
 //	}
 	
-	public Restaurante(String id) {
-		super(0, id);
+	public Restaurante(String id, String concepto) {
+		super(0, id, concepto);
 		lector = new LectorArchivos();
 		modificadorArchivo = new ModificadorDeArchivo();
 		menu = new ArrayList<Producto>();
@@ -42,10 +42,13 @@ public class Restaurante extends Consumible {
 		}
 	}
 	
+	public void iniciarPedido() {
+		this.pedidoEnCurso = new ArrayList<Producto>();
+	}
 	
 
 	public void cargarMenu(String nombreArchivo) throws IOException, ParseException {
-		if (nombreArchivo != "menuRestaurante.txt"){				
+		if (!nombreArchivo.equals("menuRestaurante.txt")){				
 			ArrayList<String> info = lector.leerArchivo(nombreArchivo);
 			for(String linea : info) {
 				String[] producto = linea.split(";");
@@ -117,14 +120,22 @@ public class Restaurante extends Consumible {
 	
 	public void addAlPedido(String producto) {
 		for(Producto p: menu) {
-			if (producto == p.getNombre()) {
+			if (producto.equals(p.getNombre())) {
 				pedidoEnCurso.add(p);
 				break;
 			}
 		}
 		
 	}
-	//TODO: Hacer que finalizar pedido tambien realize el registro del consumo
+	
+	public void modificarProducto(String producto) {
+		for (Producto p: menu){
+			if(p.getNombre().equals(producto)){
+				p.setNombre("Nuevo Nombre");
+			}
+		}
+	}
+	
 	public void finalizarPedido(){
 		for(Producto p: pedidoEnCurso) {
 			int precioActual = getPrecioTotal();
