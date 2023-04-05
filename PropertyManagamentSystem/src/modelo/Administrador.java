@@ -1,6 +1,7 @@
 package modelo;
 import modelo.Producto;
 import modelo.Habitacion;
+import modelo.Cama;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
