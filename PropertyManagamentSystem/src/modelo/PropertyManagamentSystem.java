@@ -2,7 +2,7 @@ package modelo;
 
 import java.util.ArrayList;
 
-public class PropertyManagamentSystem {
+public class PropertyManagamentSystem<Administrador> {
 	private ArrayList<Consumible> servicios;
 	private ArrayList<Habitacion> habitaciones;
 	private ModificadorDeArchivo modificadorArchivo;

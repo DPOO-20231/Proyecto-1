@@ -28,10 +28,10 @@ public class Empleado extends Usuario{
 				concepto = c.getConcepto();
 			}
 		}
-		LocalDate fechaConsumo = LocalDate.now();
+		Date fechaConsumo = new Date();
 		
 		for (Habitacion h: habitaciones) {
-			if (h.getidHabit().equals(idHabitacion)) {
+			if (h.getIdHabi().equals(idHabitacion)) {
 				h.addFacturacion(fechaConsumo, concepto, precio, true, pago, "Grupal");
 				break;
 			}
@@ -51,10 +51,10 @@ public class Empleado extends Usuario{
 				concepto = c.getConcepto();
 			}
 		}
-		LocalDate fechaConsumo = LocalDate.now();
+		Date fechaConsumo = new Date();
 		
 		for (Habitacion h: habitaciones) {
-			if (h.getidHabit().equals(idHabitacion)) {
+			if (h.getIdHabi().equals(idHabitacion)) {
 				h.addFacturacion(fechaConsumo, concepto, precio, false, pago, nombre);
 				break;
 			}
