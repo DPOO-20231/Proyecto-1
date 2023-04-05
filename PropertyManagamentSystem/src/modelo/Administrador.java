@@ -211,15 +211,19 @@ public class Admin {
             }
             System.out.print("Descripcion: ");
             String descripcion = scanner.nextLine();
+            System.out.print("Disponibilidad: ");
+            Boolean disponibleHabitacion = scanner.nextBoolean();
             System.out.print("precio: ");
             int precio = scanner.nextInt();
+            System.out.print("Inicio: ");
+            String in = scanner.nextLine();
+            LocalTime inicioDisponible = LocalTime.parse(in);
+            System.out.print("Final: ");
+            String fin = scanner.nextLine();
+            LocalTime finDisponible = LocalTime.parse(fin);
             scanner.nextLine(); 
             String reserva = scanner.nextLine();
-            Producto producto = new Producto(nombre, descripcion, precio);
+            Producto producto = new Producto(nombre, descripcion, disponibleHabitacion, precio, inicioDisponible, finDisponible);
             productos.add(producto);
-            
-        }
-    	
-    }
     
 }
