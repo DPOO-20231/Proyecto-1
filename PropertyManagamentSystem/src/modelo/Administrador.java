@@ -1,15 +1,17 @@
 package modelo;
+
 import modelo.Producto;
 import modelo.Habitacion;
 import modelo.Cama;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 
-public class Admin {
+public class Administrador {
     public void cargarHabitaciones_txt(ArrayList<Habitacion> habitaciones, String archivo) {
         try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
             String linea;
@@ -228,5 +230,9 @@ public class Admin {
             String reserva = scanner.nextLine();
             Producto producto = new Producto(nombre, descripcion, disponibleHabitacion, precio, inicioDisponible, finDisponible);
             productos.add(producto);
+            
+        }
+    	
+    }
     
 }
