@@ -34,8 +34,8 @@ public class Admin {
                     String[] tarifaCampos = tarifaStr.split("-");
                     String tipoTarifa = tarifaCampos[0];
                     double valor = Double.parseDouble(tarifaCampos[0]);
-                    double fechainicio = Double.parseDouble(tarifaCampos[1]);
-                    double fechafinal = Double.parseDouble(tarifaCampos[2]);
+                    Date fechainicio = new Date(Long.parseLong(tarifaCampos[1]));
+                    Date fechafinal = new Date(Long.parseLong(tarifaCampos[2]));
                     String producto = tarifaCampos[3];
                     Tarifa tarifa = new Tarifa(valor, fechainicio,fechafinal, producto);
                     tarifas.add(tarifa);
@@ -138,7 +138,7 @@ public class Admin {
                 System.out.println("3. Camas");
                 System.out.print("Ingrese el número de opción: ");
                 int opcion = scanner.nextInt();
-                scanner.nextLine(); // consumir el salto de línea
+                scanner.nextLine(); 
                 switch (opcion) {
                     case 1:
                         modificarCapacidad(habitacion);
