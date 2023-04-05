@@ -1,9 +1,9 @@
 package modelo;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
 
 public class Admin {
@@ -90,14 +90,28 @@ public class Admin {
                 System.out.printf("Tarifa %d:%n", i + 1);
                 System.out.print("Valor ");
                 double valor = scanner.nextDouble();
-                System.out.print("fecha inicio: ");
-                double fechainicio = scanner.nextDouble();
-                System.out.print("fecha final: ");
-                double fechafinal = scanner.nextDouble();
+                System.out.print("año inicio: ");
+                long anoinicio = (long) scanner.nextDouble();
+                System.out.print("mes inicio: ");
+                long mesinicio = (long) scanner.nextDouble();
+                System.out.print("día inicio: ");
+                long diainicio = (long) scanner.nextDouble();
+                long miliseconds = (long) ((mesinicio* 2629743833.3) + (diainicio*86400000)+(anoinicio*3600000));
+                scanner.nextLine(); 
+                Date fechainicial = new Date(miliseconds); 
+                System.out.print("año final: ");
+                long anofinal = (long) scanner.nextDouble();
+                System.out.print("mes final: ");
+                long mesfinal = (long) scanner.nextDouble();
+                System.out.print("día final: ");
+                long diafinal = (long) scanner.nextDouble();
+                long milisecondsfinal = (long) ((mesfinal* 2629743833.3) + (diafinal*86400000)+(anofinal*3600000));
+                scanner.nextLine(); 
+                Date fechafinal = new Date(milisecondsfinal);
                 System.out.print("Producto : ");
                 String producto = scanner.nextLine();
                 scanner.nextLine(); 
-                Tarifa tarifa = new Tarifa(valor, fechainicio,fechafinal,producto);
+                Tarifa tarifa = new Tarifa(valor, fechainicial,fechafinal,producto);
                 tarifas.add(tarifa);
             }
             System.out.print("Cuenta: ");
@@ -186,6 +200,26 @@ public class Admin {
             System.out.println(habitacion.toString());
         }
     }
+    public void crearservicio(ArrayList<Producto> productos) {
+    	Scanner scanner = new Scanner(System.in);
+        System.out.println("Ingrese los datos del producto (o ingrese 'fin' para terminar):");
+        while (true) {
+            System.out.print("nombre ");
+            String nombre = scanner.nextLine();
+            if (nombre.equals("fin")) {
+                break;
+            }
+            System.out.print("Descripcion: ");
+            String descripcion = scanner.nextLine();
+            System.out.print("precio: ");
+            int precio = scanner.nextInt();
+            scanner.nextLine(); 
+            String reserva = scanner.nextLine();
+            Producto producto = new Producto(nombre, descripcion, precio);
+            productos.add(producto);
+            
+        }
+    	
+    }
     
-}  
 }
