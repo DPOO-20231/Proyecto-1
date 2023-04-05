@@ -1,6 +1,5 @@
 package modelo;
 
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -37,7 +36,7 @@ public class Admin {
                     double valor = Double.parseDouble(tarifaCampos[0]);
                     double fechainicio = Double.parseDouble(tarifaCampos[1]);
                     double fechafinal = Double.parseDouble(tarifaCampos[2]);
-                    double producto = Double.parseDouble(tarifaCampos[3]);
+                    String producto = tarifaCampos[3];
                     Tarifa tarifa = new Tarifa(valor, fechainicio,fechafinal, producto);
                     tarifas.add(tarifa);
                 }
@@ -87,17 +86,18 @@ public class Admin {
             System.out.print("Elementos adicionales: ");
             String elementosAdicionales = scanner.nextLine();
             ArrayList<Tarifa> tarifas = new ArrayList<>();
-            System.out.print("Número de tarifas: ");
-            int numTarifas = scanner.nextInt();
-            scanner.nextLine(); 
-            for (int i = 0; i < numTarifas; i++) {
+            for (int i = 0; i < 1; i++) {
                 System.out.printf("Tarifa %d:%n", i + 1);
-                System.out.print("Tipo: ");
-                String tipoTarifa = scanner.nextLine();
-                System.out.print("Valor: ");
+                System.out.print("Valor ");
                 double valor = scanner.nextDouble();
+                System.out.print("fecha inicio: ");
+                double fechainicio = scanner.nextDouble();
+                System.out.print("fecha final: ");
+                double fechafinal = scanner.nextDouble();
+                System.out.print("Producto : ");
+                String producto = scanner.nextLine();
                 scanner.nextLine(); 
-                Tarifa tarifa = new Tarifa(tipoTarifa, valor);
+                Tarifa tarifa = new Tarifa(valor, fechainicio,fechafinal,producto);
                 tarifas.add(tarifa);
             }
             System.out.print("Cuenta: ");
@@ -187,4 +187,5 @@ public class Admin {
         }
     }
     
+}  
 }
