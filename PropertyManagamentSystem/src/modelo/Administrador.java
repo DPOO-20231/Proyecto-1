@@ -1,12 +1,13 @@
 package modelo;
 
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Administrador {
+public class Admin {
     public void cargarHabitaciones_txt(ArrayList<Habitacion> habitaciones, String archivo) {
         try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
             String linea;
@@ -33,8 +34,11 @@ public class Administrador {
                 for (String tarifaStr : tarifasStr) {
                     String[] tarifaCampos = tarifaStr.split("-");
                     String tipoTarifa = tarifaCampos[0];
-                    double valor = Double.parseDouble(tarifaCampos[1]);
-                    Tarifa tarifa = new Tarifa();
+                    double valor = Double.parseDouble(tarifaCampos[0]);
+                    double fechainicio = Double.parseDouble(tarifaCampos[1]);
+                    double fechafinal = Double.parseDouble(tarifaCampos[2]);
+                    double producto = Double.parseDouble(tarifaCampos[3]);
+                    Tarifa tarifa = new Tarifa(valor, fechainicio,fechafinal, producto);
                     tarifas.add(tarifa);
                 }
                 String cuenta = campos[9];
