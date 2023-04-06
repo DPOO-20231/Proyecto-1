@@ -45,6 +45,13 @@ public class Recepcionista extends Empleado{
 						descripcion += i + " ";
 					}
 				}
+				if (h.getReservas().size() != 0) {
+					descripcion += "\n	  - Reservas: ";
+					
+					for (Reserva r: h.getReservas()) {
+						descripcion += formatearInfoReserva(r);
+					}
+				}
 			}
 		}
 		return descripcion;
@@ -75,6 +82,26 @@ public class Recepcionista extends Empleado{
 		ArrayList<Object> infoReserva = rsv.getEspecificaciones();
 		String descripcion =	"Reserva de la habitación " + IdHabitacion + "para la fecha: " + fecha +
 								"\n		Fechas: " + infoReserva.get(0) + " hasta " + infoReserva.get(1);
+		List<ArrayList<Object>> huespeds = (List<ArrayList<Object>>) infoReserva.get(3);
+		String huesped = rsv.getListaHuespedes().get(0).getNombre();
+		descripcion += 	"\n		Huesped: " + huesped +
+						"\n 	Documento: " + infoReserva.get(5) +
+						"\n 	Correo: " + infoReserva.get(6) +
+						"\n		Numero: " + infoReserva.get(7);
+		return descripcion;
+	}
+	
+	public String formatearInfoReserva(Reserva rsv) {
+		
+		ArrayList<Object> infoReserva = rsv.getEspecificaciones();
+		String descripcion =	"\n-----------------------------------------------------------------------" +
+								"\n		Fechas: " + infoReserva.get(0) + " hasta " + infoReserva.get(1);
+		List<ArrayList<Object>> huespeds = (List<ArrayList<Object>>) infoReserva.get(3);
+		String huesped = rsv.getListaHuespedes().get(0).getNombre();
+		descripcion += 	"\n		Huesped: " + huesped +
+						"\n 	Documento: " + infoReserva.get(5) +
+						"\n 	Correo: " + infoReserva.get(6) +
+						"\n		Numero: " + infoReserva.get(7);
 		return descripcion;
 	}
 	
@@ -98,5 +125,16 @@ public class Recepcionista extends Empleado{
 		
 		reservas.add(new ReservarHabitacion(inicio, fin, habitacionesReservadas, huespedsReserva, documento, correo, numero));
 		reservas.get(reservas.size() - 1).crearReserva();
+	}
+	
+	public String cancelarReserva(String documentoHuesped) {
+		String rta = "";
+		for (ReservarHabitacion rh: reservas) {
+			if (documentoHuesped.equals(rh.getDocumento())){
+				rta = rh.cancelarReserva();
+				break;
+			}
+		}
+		return rta;
 	}
 }

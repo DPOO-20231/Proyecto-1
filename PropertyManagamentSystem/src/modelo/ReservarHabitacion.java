@@ -152,19 +152,20 @@ public class ReservarHabitacion {
 		
 	}
 	
-	public void cancelarReserva(Reserva reserva) {
+	public String cancelarReserva() {
 		Date hoy = new Date();
 		long horas = 172000000;	
 		long duracion = hoy.getTime();
-		long res = reserva.getDateInicio().getTime();
+		long res = dateInicio.getTime();
 		long cancelar = (res - horas);
 		if (duracion < cancelar) {
 			for (Habitacion item:habitaciones) {
-				item.cancelarReserva(reserva);
+				item.cancelarReserva(documento);
 			}
+			return "Reserva cancelada";
 		}
 		else {
-			System.out.println("Ya se supero el limite de 48 horas para poder cancelar la reserva");
+			return "Ya se supero el limite de 48 horas para poder cancelar la reserva";
 		}
 	}
 	
