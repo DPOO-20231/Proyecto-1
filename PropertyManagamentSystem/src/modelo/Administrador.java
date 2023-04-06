@@ -1,8 +1,8 @@
 package modelo;
 
-import modelo.Producto;
-import modelo.Habitacion;
-import modelo.Cama;
+import model.Producto;
+import model.Habitacion;
+import model.Cama;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -10,8 +10,9 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
+import java.util.HashMap;
 
-public class Administrador {
+public class Admin {
     public void cargarHabitaciones_txt(ArrayList<Habitacion> habitaciones, String archivo) {
         try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
             String linea;
@@ -26,13 +27,21 @@ public class Administrador {
                 String[] camasStr = campos[5].split(";");
                 for (String camaStr : camasStr) {
                     String[] camaCampos = camaStr.split("-");
-                    String tipoCama = camaCampos[0];
-                    int cantidad = Integer.parseInt(camaCampos[1]);
-                    Cama cama = new Cama(tipoCama, cantidad);
+                    String size = camaCampos[0];
+                    int capacidad = Integer.parseInt(camaCampos[1]);
+                    String uso = camaCampos[2];
+                    Cama cama = new Cama(size, capacidad, uso);
                     camas.add(cama);
                 }
-                String elementosDeCobro = campos[6];
-                String elementosAdicionales = campos[7];
+                ArrayList<Cama> camas = new ArrayList<>();
+                HashMap<String, Integer> elementosDeCobro = new HashMap<String, Integer>();
+                String[] elementos = campos[6].split(";");
+                for (String elemento : elementos ) {
+                	String[] dictionary = elemento.split(":");
+                	String nombre = dictionary[0];
+                	int precio = Integer.parseInt(dictionary[1]);
+                	elementosDeCobro.put(nombre, precio);
+                }
                 ArrayList<Tarifa> tarifas = new ArrayList<>();
                 String[] tarifasStr = campos[8].split(";");
                 for (String tarifaStr : tarifasStr) {
@@ -45,11 +54,9 @@ public class Administrador {
                     Tarifa tarifa = new Tarifa(valor, fechainicio,fechafinal, producto);
                     tarifas.add(tarifa);
                 }
-                String cuenta = campos[9];
-                String huespedes = campos[10];
-                String reserva = campos[11];
-                Habitacion habitacion = new Habitacion(idHabi, ubicacion, capacidad, tipo, numcamas,
-                        camas, elementosDeCobro, elementosAdicionales, tarifas, cuenta, huespedes, reserva);
+              
+                Habitacion habitacion = new Habitacion(idHabi, ubicacion, capacidad, tipo, numcamas,elementosDeCobro, 
+                         tarifas, camas);
                 habitaciones.add(habitacion);
             }
         } catch (IOException e) {
