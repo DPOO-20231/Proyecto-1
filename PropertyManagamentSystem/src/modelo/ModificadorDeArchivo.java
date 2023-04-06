@@ -76,7 +76,7 @@ public class ModificadorDeArchivos {
     }
     public static void modificarTarifa(Habitacion habitacion) {
     	Scanner scanner = new Scanner(System.in);
-        System.out.printf("Ubicacion actual: ", habitacion.getTarifa());
+        System.out.printf("Ubicacion actual: ", habitacion.getTarifas());
         System.out.printf("Tarifa ");
         System.out.print("Valor ");
         double valor_ = scanner.nextDouble();
