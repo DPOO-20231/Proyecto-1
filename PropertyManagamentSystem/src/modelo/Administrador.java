@@ -1,8 +1,9 @@
 package modelo;
+
 import modelo.Producto;
 import modelo.Habitacion;
 import modelo.Cama;
-import modelo.PropertyManagmentSystem;
+import model.PropertyManagmentSystem;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -12,7 +13,7 @@ import java.util.Date;
 import java.util.Scanner;
 import java.util.HashMap;
 
-public class Administrador {
+public class Admin {
     public void cargarHabitaciones_txt(ArrayList<Habitacion> habitaciones, String archivo) {
         try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
             String linea;
@@ -84,14 +85,28 @@ public class Administrador {
             ArrayList<Cama> camas = new ArrayList<>();
             for (int i = 0; i < numcamas; i++) {
                 System.out.printf("Cama %d:%n", i + 1);
-                System.out.print("Tipo: ");
-                String tipoCama = scanner.nextLine();
-                System.out.print("Cantidad: ");
-                int cantidad = scanner.nextInt();
+                System.out.print("Tamaño: ");
+                String size = scanner.nextLine();
+                System.out.print("capacidad: ");
+                int capacidad_1 = scanner.nextInt();
+                System.out.print("uso: ");
+                String uso = scanner.nextLine();
                 scanner.nextLine(); 
-                Cama cama = new Cama(tipoCama, cantidad);
+                Cama cama = new Cama(size, capacidad_1,uso);
                 camas.add(cama);
             }
+            
+            HashMap<String, Integer> elementosCobro1 = new HashMap<String, Integer>();
+            System.out.print("numero de elementos");
+            int valor = scanner.nextInt();
+            for (int i = 0; i < valor; i++) {
+            	System.out.print("Producto: ");
+                String name = scanner.nextLine();
+            	System.out.print("Valor: ");
+                int price = scanner.nextInt();
+                elementosCobro1.put(name, price);
+            }
+            
             System.out.print("Elementos de cobro: ");
             String elementosDeCobro = scanner.nextLine();
             System.out.print("Elementos adicionales: ");
