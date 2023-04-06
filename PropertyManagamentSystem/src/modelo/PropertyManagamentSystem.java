@@ -12,6 +12,7 @@ import java.util.Map;
 import java.util.Set;
 import modelo.Administrador;
 import modelo.Consumible;
+import modelo.Administrador;
 import modelo.Recepcionista;
 import modelo.Empleado;
 import modelo.Reserva;
@@ -24,6 +25,7 @@ public class PropertyManagamentSystem {
 	private ArrayList<Habitacion> habitaciones;
 	private ModificadorDeArchivo modificadorArchivo;
 	private ArrayList<Reserva> ConsultaReserva;
+	private ArrayList<Producto> productos;
 	private ArrayList<Recepcionista> opcionesRecepcionista;
 	private ArrayList<Empleado> opcionesEmpleado;
 	private HashMap<String, ArrayList<String>> habitacionesOcupadas;
@@ -64,6 +66,32 @@ public class PropertyManagamentSystem {
 	{
 		
 	}
+	public void crearservicio()
+	{
+		Administrador Admin=null;
+		Admin.crearservicio(productos);
+	}
+
+	public void Modificaservicio()
+	{
+		Administrador Admin=null;
+		Admin.modificarServicio(productos);
+	}
+	public void consultaservicio()
+	{
+		Administrador Admin=null;
+	}
+	public void crearHabi(String NameFile)
+	{
+		Administrador Admin=null;
+		Admin.cargarHabitaciones_txt(habitaciones, NameFile);
+	}
+	public void ModifyHabi()
+	{
+		Administrador Admin=null;
+		Admin.modificarHabitacion(habitaciones);
+	}
+
 
 	public String VerifyLogin(String IDusuario, String Contraseña)
 	{
@@ -87,4 +115,5 @@ public class PropertyManagamentSystem {
 		}
 		return rol;
 	}
+
 }

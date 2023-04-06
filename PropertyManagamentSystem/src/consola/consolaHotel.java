@@ -66,11 +66,12 @@ while (elige){
 		int Opcion = Integer.parseInt(input("Por favor seleccione una opción"));
 		if (Opcion == 1)
 		{
-
+		PMS.crearservicio();
+		System.out.println("Creado Exitosamente");
 		}
 		else if (Opcion == 2)
 		{
-			
+		PMS.consultaservicio();
 		}
 		else if (Opcion == 3)
 		{
@@ -78,11 +79,14 @@ while (elige){
 		}
 		else if (Opcion == 4)
 		{
-			
+		String NFile = input("Por Favor Digite el nombre del Archivo");
+		PMS.crearHabi(NFile);
 		}
 		else if (Opcion == 5)
 		{
-			
+			PMS.ModifyHabi();
+			System.out.println("Modificado Exitosamente");
+
 		}
 		else if (Opcion == 6)
 		{
@@ -105,7 +109,7 @@ public void Emple(){
 		int Opcion = Integer.parseInt(input("Por favor seleccione una opción"));
 		if (Opcion == 1)
 		{
-
+			PMS.crearservicio();
 		}
 		else if (Opcion == 2)
 		{
