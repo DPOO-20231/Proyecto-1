@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Scanner;
-import model.Habitacion;
+import modelo.Habitacion;
 import modelo.Producto;
 import modelo.Cama;
 import modelo.Empleado; 
