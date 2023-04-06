@@ -2,8 +2,8 @@ package modelo;
 import modelo.Producto;
 import modelo.Habitacion;
 import modelo.Cama;
-import modelo.ModificadorDeArchivos;
-import modelo.PropertyManagmentSystem;
+import modelo.ModificadorDeArchivo;
+import modelo.PropertyManagamentSystem;
 import modelo.Tarifa;
 import modelo.Empleado;
 import java.io.BufferedReader;
@@ -31,9 +31,9 @@ public class Administrador {
                 for (String camaStr : camasStr) {
                     String[] camaCampos = camaStr.split("-");
                     String size = camaCampos[0];
-                    int capacidad = Integer.parseInt(camaCampos[1]);
+                    int capacidadC = Integer.parseInt(camaCampos[1]);
                     String uso = camaCampos[2];
-                    Cama cama = new Cama(size, capacidad, uso);
+                    Cama cama = new Cama(size, capacidadC, uso);
                     camas.add(cama);
                 }
                 HashMap<String, Integer> elementosDeCobro = new HashMap<String, Integer>();
@@ -48,8 +48,7 @@ public class Administrador {
                 String[] tarifasStr = campos[7].split(";");
                 for (String tarifaStr : tarifasStr) {
                     String[] tarifaCampos = tarifaStr.split("-");
-                    String tipoTarifa = tarifaCampos[0];
-                    double valor = Double.parseDouble(tarifaCampos[0]);
+                    int valor = Integer.parseInt(tarifaCampos[0]);
                     Date fechainicio = new Date(Long.parseLong(tarifaCampos[1]));
                     Date fechafinal = new Date(Long.parseLong(tarifaCampos[2]));
                     String producto = tarifaCampos[3];
@@ -112,7 +111,7 @@ public class Administrador {
             
             System.out.printf("Tarifa ");
             System.out.print("Valor ");
-            double valor_ = scanner.nextDouble();
+            int valor_ = scanner.nextInt();
             System.out.print("año inicio: ");
             long anoinicio = (long) scanner.nextDouble();
             System.out.print("mes inicio: ");
@@ -135,9 +134,9 @@ public class Administrador {
             String producto = scanner.nextLine();
             scanner.nextLine(); 
             Tarifa tarifas = new Tarifa(valor_, fechainicial,fechafinal,producto);
-            
-            Habitacion habitacion = new Habitacion(idHabi, ubicacion, capacidad, tipo, numcamas,elementosDeCobro, 
-                    tarifas, camas);
+            ArrayList<Tarifa> FinalTarifa = new ArrayList<>();
+            FinalTarifa.add(tarifas);
+            Habitacion habitacion = new Habitacion(idHabi, ubicacion, capacidad, tipo, numcamas,elementosCobro1, FinalTarifa, camas);
             habitaciones.add(habitacion);
         }
         
@@ -161,25 +160,25 @@ public class Administrador {
                 scanner.nextLine(); 
                 switch (opcion) {
                     case 1:
-                    	ModificadorDeArchivos.modificarCapacidad(habitacion);
+                    	ModificadorDeArchivo.modificarCapacidad(habitacion);
                         break;
                     case 2:
-                    	ModificadorDeArchivos.modificarNumCamas(habitacion);
+                    	ModificadorDeArchivo.modificarNumCamas(habitacion);
                         break;
                     case 3:
-                    	ModificadorDeArchivos.modificarCamas(habitacion);
+                        ModificadorDeArchivo.modificarCamas(habitacion);
                         break;
                     case 4:
-                    	ModificadorDeArchivos.modificarUbicacion(habitacion);
+                    	ModificadorDeArchivo.modificarUbicacion(habitacion);
                         break;
                     case 5:
-                    	ModificadorDeArchivos.modificarTipo(habitacion);
+                    	ModificadorDeArchivo.modificarTipo(habitacion);
                         break;
                     case 6:
-                    	ModificadorDeArchivos.modificarElementos(habitacion);
+                    	ModificadorDeArchivo.modificarElementos(habitacion);
                         break;
                     case 7:
-                    	ModificadorDeArchivos.modificarTarifa(habitacion);
+                    	ModificadorDeArchivo.modificarTarifa(habitacion);
                     	break;
                     default:
                         System.out.println("Opción inválida.");
@@ -198,6 +197,8 @@ public class Administrador {
             System.out.println(habitacion.toString());
         }
     }
+
+
     public void crearservicio(ArrayList<Producto> productos) {
     	Scanner scanner = new Scanner(System.in);
         System.out.println("Ingrese los datos del producto (o ingrese 'fin' para terminar):");
@@ -205,6 +206,7 @@ public class Administrador {
             System.out.print("nombre ");
             String nombre = scanner.nextLine();
             if (nombre.equals("fin")) {
+                System.out.println("Este servicio ya se encuentra creado. ");
                 break;
             }
             System.out.print("Descripcion: ");
@@ -220,7 +222,7 @@ public class Administrador {
             String fin = scanner.nextLine();
             LocalTime finDisponible = LocalTime.parse(fin);
             scanner.nextLine();
-            Producto producto = new Producto(nombre, descripcion, disponibleHabitacion, precio, inicioDisponible, finDisponible);
+            Producto producto = new Producto(nombre, descripcion, precio,disponibleHabitacion, inicioDisponible, finDisponible);
             productos.add(producto);
             
         }
@@ -245,19 +247,19 @@ public class Administrador {
                 scanner.nextLine(); 
                 switch (opcion) {
                     case 1:
-                    	ModificadorDeArchivos.modificarDescripcion(producto);
+                    	ModificadorDeArchivo.modificarDescripcion(producto);
                         break;
                     case 2:
-                    	ModificadorDeArchivos.modificarDisponibilidad(producto);
+                    	ModificadorDeArchivo.modificarDisponibilidad(producto);
                         break;
                     case 3:
-                    	ModificadorDeArchivos.modificarPrecio(producto);
+                    	ModificadorDeArchivo.modificarPrecio(producto);
                         break;
                     case 4:
-                    	ModificadorDeArchivos.modificarInicio(producto);
+                    	ModificadorDeArchivo.modificarInicio(producto);
                         break;
                     case 5:
-                    	ModificadorDeArchivos.modificarFinal(producto);
+                    	ModificadorDeArchivo.modificarFinal(producto);
                         break;
                     default:
                         System.out.println("Opción inválida.");
@@ -266,10 +268,10 @@ public class Administrador {
                 return;
             }
         }
-        System.out.printf("No se encontró la habitación con ID %s.%n", idHabi);
+        System.out.printf("No se encontró el producto con nombre: ", nombre);
     }
     
-    public void cargarPersonal(HashMap<String, Empleado> diccionario) {
+    public void cargarPersonal(HashMap<String, Empleado> diccionario, PropertyManagamentSystem PMS) {
     	Scanner scanner = new Scanner(System.in);
     	System.out.println("Ingrese los datos del personal (o ingrese 'fin' para terminar):");
     	while (true) {
@@ -286,8 +288,7 @@ public class Administrador {
             String password = scanner.nextLine();
             System.out.println("Rol: ");
             String rol = scanner.nextLine();
-            PropertyManagmentSystem pms = new PropertyManagmentSystem();
-            Empleado empleado = new Empleado(nombre, id, correo, password, rol, pms);
+            Empleado empleado = new Empleado(nombre, id, correo, password, rol, PMS);
             diccionario.put(id, empleado);
     	}
     }

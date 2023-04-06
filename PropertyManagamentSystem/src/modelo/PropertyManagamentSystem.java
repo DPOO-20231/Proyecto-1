@@ -19,6 +19,7 @@ import modelo.Reserva;
 import modelo.Habitacion;
 import modelo.Usuario;
 import modelo.Loader;
+import modelo.ModificadorDeArchivo;
 
 public class PropertyManagamentSystem {
 	private ArrayList<Consumible> servicios;
@@ -30,7 +31,7 @@ public class PropertyManagamentSystem {
 	private ArrayList<Empleado> opcionesEmpleado;
 	private HashMap<String, ArrayList<String>> habitacionesOcupadas;
 	private ArrayList<Usuario> usuarios;
-	private Map<String, Empleado> empleados;
+	private HashMap<String, Empleado> empleados;
 	
 	/**
 	 * 
@@ -40,7 +41,7 @@ public class PropertyManagamentSystem {
 	{
 		try {
 			ArrayList<Object> DataC = Loader.cargarData(this);
-			this.empleados = (Map<String, Empleado>) DataC.get(0);
+			this.empleados = (HashMap<String, Empleado>) DataC.get(0);
 			this.servicios = (ArrayList<Consumible>) DataC.get(1);
 
 
@@ -91,7 +92,68 @@ public class PropertyManagamentSystem {
 		Administrador Admin=null;
 		Admin.modificarHabitacion(habitaciones);
 	}
+	public void CreaPersonal()
+	{
+		Administrador Admin=null;
+		Admin.cargarPersonal(empleados, this);
+	}
+	public void consultaServicio(String IDServicio){
+        Producto servicioEncontrado= null;
+    
+		for (int i = 0; i < productos.size() && servicioEncontrado == null; i++)
+		{
+			if (productos.get(i).getNombre().equals(IDServicio))
+				servicioEncontrado= productos.get(i);
+		}
+		if (servicioEncontrado != null){
+			String mensaje = "el servicio" + servicioEncontrado.getNombre()+", con Descripcion: "+ servicioEncontrado.getDescripcion() +
+			"tiene un valor de: $" + servicioEncontrado.getPrecio()+ " y esta Disponible para cuarto: "+ servicioEncontrado.getDisponibleHabitacion() +
+			"desde el "+servicioEncontrado.getInicioDisponible() +" hasta el: " + servicioEncontrado.getFinDisponible();
+			System.out.println(mensaje);}
+		else
+		{
+			System.out.println("No se encontro el Servicio con nombre: " + IDServicio);
+		}
+		}
+		
+	public void consultaHabitacion(String IDHabitacion){
+		Habitacion FindHabi= null;
+	
+		for (int i = 0; i < habitaciones.size() && FindHabi == null; i++)
+		{
+			if (habitaciones.get(i).getIdHabi().equals(IDHabitacion))
+				FindHabi= habitaciones.get(i);
+		}
+		if (FindHabi != null){
+			String mensaje = "La habitacion No. " + IDHabitacion+" se encuentra en: " +FindHabi.getUbicacion()+"es tipo: "+ FindHabi.getTipo()+
+			"tiene "+FindHabi.getNumCamas() + " camas. Tiene una capacidad maxima de: " +FindHabi.getCapacidad()+" huespeds y cuenta con los elementos: "+ FindHabi.getElementosDeCobro();
+			System.out.println(mensaje);}
+		else
+		{
+			System.out.println("No se encontro La habitacion No. " + IDHabitacion);
+		}
+		}
+		public void consultaReservas(String IDHabitacion){
+			ArrayList<Habitacion> FindHabi= null;
+			for (int i = 0; i < ConsultaReserva.size(); i++)
+			{
+			FindHabi=ConsultaReserva.get(i).getHabitaciones();
+				for (int j = 0; j < FindHabi.size(); j++){
+					if (FindHabi.get(i).getIdHabi().equals(IDHabitacion)){
+						System.out.println("La Habitacion No. "+IDHabitacion+" esta reservada del "+ConsultaReserva.get(i).getDateInicio()+
+						"hasta el "+ ConsultaReserva.get(i).getDateFin());
+					}
+				}
+			}
+			}
+	public void RealizarReserva(){
 
+		Reserva Newreserva = new Reserva(null, null, habitaciones, null, null, null, null)
+	}
+	
+
+
+    
 
 	public String VerifyLogin(String IDusuario, String Contraseña)
 	{

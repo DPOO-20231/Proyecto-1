@@ -9,11 +9,10 @@ import modelo.Habitacion;
 import modelo.Producto;
 import modelo.Cama;
 import modelo.Empleado; 
-import modelo.ModificadorDeArchivos;
-import modelo.PropertyManagmentSystem;
+import modelo.PropertyManagamentSystem;
 
 
-public class ModificadorDeArchivos {
+public class ModificadorDeArchivo {
 	private String nombreArchivo;
 	private String mensaje;
 	
@@ -29,10 +28,10 @@ public class ModificadorDeArchivos {
 
     public static void modificarNumCamas(Habitacion habitacion) {
         Scanner scanner = new Scanner(System.in);
-        System.out.printf("Número de camas actual: %d%n", habitacion.getNumcamas());
+        System.out.printf("Número de camas actual: %d%n", habitacion.getNumCamas());
         System.out.print("Ingrese el nuevo número de camas: ");
         int nuevoNumCamas = scanner.nextInt();
-        habitacion.setNumcamas(nuevoNumCamas);
+        habitacion.setNumCamas(nuevoNumCamas);
         System.out.println("Número de camas modificado exitosamente.");
     }
     
@@ -79,7 +78,7 @@ public class ModificadorDeArchivos {
         System.out.printf("Ubicacion actual: ", habitacion.getTarifas());
         System.out.printf("Tarifa ");
         System.out.print("Valor ");
-        double valor_ = scanner.nextDouble();
+        int valor_ = scanner.nextInt();
         System.out.print("año inicio: ");
         long anoinicio = (long) scanner.nextDouble();
         System.out.print("mes inicio: ");
@@ -102,7 +101,9 @@ public class ModificadorDeArchivos {
         String producto = scanner.nextLine();
         scanner.nextLine(); 
         Tarifa tarifas = new Tarifa(valor_, fechainicial,fechafinal,producto);
-        habitacion.setTarifas(tarifas);
+        ArrayList<Tarifa> newvalue=new ArrayList<>();
+        newvalue.add(tarifas);
+        habitacion.setTarifas(newvalue);
         System.out.println("Modificación exitosamente.");
     }
     public static void modificarElementos(Habitacion habitacion) {
@@ -140,13 +141,30 @@ public class ModificadorDeArchivos {
         producto.setDescripcion(nuevo);
         System.out.println("Capacidad modificada exitosamente.");
     }
+    /**
+     * @param producto
+     */
     public static void modificarDisponibilidad(Producto producto) {
         Scanner scanner = new Scanner(System.in);
-        System.out.printf("Capacidad actual: %d%n", producto.getDisponibleHabitacion());
-        System.out.print("Ingrese la nueva versión: ");
-        String nuevo = scanner.nextLine();
-        producto.setDisponibleHabitacion(nuevo);
-        System.out.println("Capacidad modificada exitosamente.");
+        System.out.printf("Actualmente esta Disponible: ", producto.getDisponibleHabitacion());
+        
+        System.out.println("¿Desea que este Disponible?");
+        System.out.println("1. Verdadero");
+        System.out.println("2. Falso");
+        int opcion = scanner.nextInt();
+        scanner.nextLine(); 
+        switch (opcion) {
+            case 1:
+                producto.setDisponibleHabitacion(true);
+                break;
+            case 2:
+                producto.setDisponibleHabitacion(false);
+                break;
+            default:
+                System.out.println("Opción inválida.");
+                break;
+        }
+        System.out.println("Disponibilidad del producto modificada exitosamente.");
     }
     public static void modificarPrecio(Producto producto) {
         Scanner scanner = new Scanner(System.in);

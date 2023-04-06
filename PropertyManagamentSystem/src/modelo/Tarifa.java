@@ -8,7 +8,7 @@ public class Tarifa {
     private Date dateFin;
     private String IdProducto;
 
-    public Tarifa(int precio, Date dateInicio, Date dateFin, String IdProducto) {
+    public  Tarifa(int precio, Date dateInicio, Date dateFin, String IdProducto) {
         this.precio = precio;
         this.dateInicio = dateInicio;
         this.dateFin = dateFin;

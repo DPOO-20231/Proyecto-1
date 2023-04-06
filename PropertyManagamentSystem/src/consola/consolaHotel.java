@@ -4,7 +4,11 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Collection;
-import java.util.List;
+import java.util.ArrayList;
+import java.util.Scanner;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Map;
 
 import modelo.PropertyManagamentSystem;
@@ -75,7 +79,9 @@ while (elige){
 		}
 		else if (Opcion == 3)
 		{
-			
+			String NServicio = input("Por Favor digite el nombre del servicio ");
+			PMS.consultaServicio(NServicio);
+
 		}
 		else if (Opcion == 4)
 		{
@@ -89,6 +95,11 @@ while (elige){
 
 		}
 		else if (Opcion == 6)
+		{
+			PMS.CreaPersonal();
+			System.out.println("Personal creado");
+		}
+		else if (Opcion == 7)
 		{
 			System.out.println("Saliendo de la aplicación ...");
 			elige = false;
@@ -113,7 +124,10 @@ public void Emple(){
 		}
 		else if (Opcion == 2)
 		{
-			
+			Date FechaS=Fecha("Inicio");
+			Date FechaE=Fecha("Finalizacion");
+
+
 		}
 		else if (Opcion == 3)
 		{
@@ -150,8 +164,25 @@ public void Emple(){
 		System.out.println("Debe seleccionar uno de los números de las opciones.");
 	}
 }
+}
 
 
+public Date Fecha(String Cpto){
+	Date fechaI=null;
+
+	Scanner scanner = new Scanner(System.in);
+	System.out.println("Ingrese la fecha de "+Cpto+": (DD/MM/YYYY)");
+	String fechaString = scanner.nextLine();
+
+	try {
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		fechaI = sdf.parse(fechaString);
+		
+	} catch (ParseException e) {
+		System.out.println("Error: formato de fecha inválido.");
+	}
+	scanner.close();
+	return fechaI;
 }
 public void Recep(){
 	opcionesRecepcionista();
@@ -162,11 +193,13 @@ public void Recep(){
 		int Opcion = Integer.parseInt(input("Por favor seleccione una opción"));
 		if (Opcion == 1)
 		{
-
+			String IDHabi = input("Por Favor digite el identificador de la Habitacion");
+			PMS.consultaServicio(IDHabi);
 		}
 		else if (Opcion == 2)
 		{
-			
+			String IDHabi = input("Por Favor digite el identificador de la Habitacion");
+			PMS.consultaReservas(IDHabi);
 		}
 		else if (Opcion == 3)
 		{
@@ -201,10 +234,6 @@ public void Recep(){
 }
 }
 
-
-
-
-}
 public void FirstOpcion()
 	{
 		System.out.println("\nBienvenido al Property Managament System\n");
@@ -221,7 +250,8 @@ public void opcionesAdmin()
 		System.out.println("3. Consultar Servicio");
 		System.out.println("4. Crear Habitaciones");
 		System.out.println("5. Modificar Habitaciones");
-		System.out.println("6. Salir de la aplicación\n");
+		System.out.println("6. Crear Personal\n");
+		System.out.println("7. Salir de la aplicación\n");
 	}
 public void opcionesRecepcionista()
 {
@@ -237,7 +267,7 @@ public void opcionesRecepcionista()
 }
 public void opcionesEmpleado()
 {
-	System.out.println("\nBienvenido Recepcionista\n");
+	System.out.println("\nBienvenido Empleado\n");
 	System.out.println("1. Consultar una Habitacion");
 	System.out.println("2. Habitacion");
 	System.out.println("3. Restaurante");
@@ -277,6 +307,7 @@ public static void main(String[] args)
 		
 		consola.ejecutarAplicacion();
 	}
-	
+
+
 
 }
