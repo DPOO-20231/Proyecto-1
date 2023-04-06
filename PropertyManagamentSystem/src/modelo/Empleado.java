@@ -6,6 +6,7 @@ import java.util.Date;
 
 public class Empleado extends Usuario{	
 	private String rol;
+	private String password;
 	private static ArrayList<Habitacion> habitacionesHotel;
 	
 	public Empleado(String name, String id, String correo, String password, String rol, PropertyManagamentSystem pms) {
@@ -13,6 +14,9 @@ public class Empleado extends Usuario{
 	}
 	public String getrol() {
 		return rol;
+	}
+	public String getPassword(){
+		return password;
 	}
 	public void setHabitacionesHotel(ArrayList<Habitacion> habitaciones) {
 		habitacionesHotel = habitaciones;

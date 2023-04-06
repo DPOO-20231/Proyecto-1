@@ -13,14 +13,14 @@ import modelo.Loader;
 public class consolaHotel {
 
 	private boolean continuar = true;
-	private PropertyManagamentSystem PMS;
+	private PropertyManagamentSystem PMS = new PropertyManagamentSystem();
 
 
 	public void ejecutarAplicacion()
 	{
 
 		String Rol;
-		iniciarAplicacion();
+
 		while (continuar)
 		{
 			try
@@ -121,23 +121,7 @@ public String VerifyLogin()
 	String Rol = PMS.VerifyLogin(Login, Password);
 	return Rol;
 }
-private void iniciarAplicacion()
-{
-	try
-	{
-		PMS= Loader.cargarinformacion();
-	}
-	catch (FileNotFoundException e)
-	{
-		System.out.println("ERROR: el archivo indicado no se encontró.");
-	}
-	catch (IOException e)
-	{
-		System.out.println("ERROR: hubo un problema leyendo el archivo.");
-		System.out.println(e.getMessage());
-	}
 
-}
 public static void main(String[] args)
 	{
 		consolaHotel consola = new consolaHotel();
