@@ -3,6 +3,7 @@ package modelo;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -24,6 +25,8 @@ public class PropertyManagamentSystem {
 	private ModificadorDeArchivo modificadorArchivo;
 	private ArrayList<Reserva> ConsultaReserva;
 	private ArrayList<Recepcionista> opcionesRecepcionista;
+	private ArrayList<Empleado> opcionesEmpleado;
+	private HashMap<String, ArrayList<String>> habitacionesOcupadas;
 	private ArrayList<Usuario> usuarios;
 	private Map<String, Empleado> empleados;
 	

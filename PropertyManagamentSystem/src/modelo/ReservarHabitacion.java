@@ -6,7 +6,7 @@ import java.util.Date;
 public class ReservarHabitacion {
 	private Date dateInicio;
 	private Date dateFin;
-	private double precioTotal;
+	private int precioTotal;
 	private ArrayList<Habitacion> habitaciones;
 	private ArrayList<Huesped> huespeds;
 	private ArrayList<Facturacion> cuenta;
@@ -93,7 +93,7 @@ public class ReservarHabitacion {
 
 
 
-	public void setPrecioTotal(double precioTotal) {
+	public void setPrecioTotal(int precioTotal) {
 		this.precioTotal = precioTotal;
 	}
 
@@ -143,10 +143,9 @@ public class ReservarHabitacion {
 		
 	}
 	
-	public void crearReserva(Date dateInicio, Date dateFin, ArrayList<Habitacion> habitacion, ArrayList<Huesped> huespeds,
-			String documento, String correo, String numero) {
+	public void crearReserva() {
 		
-		Reserva reserva = new Reserva(dateInicio, dateFin, habitacion, huespeds, documento, correo, numero);
+		Reserva reserva = new Reserva(dateInicio, dateFin, habitaciones, huespeds, documento, correo, numero);
 		for (Habitacion item:habitaciones) {
 			item.setReservas(reserva);
 		}	

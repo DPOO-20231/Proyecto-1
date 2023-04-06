@@ -4,7 +4,7 @@ public class Usuario {
 	private String nombre;
 	private String Id;
 	protected String Password;
-	protected PropertyManagamentSystem PMS;
+	protected static PropertyManagamentSystem PMS;
 	
 	public Usuario(String name, String id, String correo, String password, String rol, PropertyManagamentSystem pms) {
 		super();

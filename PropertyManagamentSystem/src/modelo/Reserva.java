@@ -97,7 +97,6 @@ public class Reserva {
 		especificaciones.add(getDateInicio());
 		especificaciones.add(getDateFin());
 		especificaciones.add(getPrecioTotal());
-		especificaciones.add(getHabitacion());
 		especificaciones.add(getHuespeds());
 		especificaciones.add(getCuenta());
 		especificaciones.add(getDocumento());
@@ -154,7 +153,63 @@ public class Reserva {
 		
 	}
 	
-	
+	public ArrayList<Habitacion> getHabitaciones() {
+		return habitaciones;
+	}
+
+
+
+	public void setDateInicio(Date dateInicio) {
+		this.dateInicio = dateInicio;
+	}
+
+
+
+	public void setDateFin(Date dateFin) {
+		this.dateFin = dateFin;
+	}
+
+
+
+	public void setPrecioTotal(double precioTotal) {
+		this.precioTotal = precioTotal;
+	}
+
+
+
+	public void setHabitaciones(ArrayList<Habitacion> habitaciones) {
+		this.habitaciones = habitaciones;
+	}
+
+
+
+	public void setHuespeds(ArrayList<Huesped> huespeds) {
+		this.huespeds = huespeds;
+	}
+
+
+
+	public void setCuenta(ArrayList<Facturacion> cuenta) {
+		this.cuenta = cuenta;
+	}
+
+
+
+	public void setDocumento(String documento) {
+		this.documento = documento;
+	}
+
+
+
+	public void setCorreo(String correo) {
+		this.correo = correo;
+	}
+
+
+
+	public void setNumero(String numero) {
+		this.numero = numero;
+	}
 	
 	
 }
