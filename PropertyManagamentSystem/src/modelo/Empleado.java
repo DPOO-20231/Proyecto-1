@@ -5,13 +5,15 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Empleado extends Usuario{	
-
+	private String rol;
 	private static ArrayList<Habitacion> habitacionesHotel;
 	
 	public Empleado(String name, String id, String correo, String password, String rol, PropertyManagamentSystem pms) {
 		super(name, id, correo, password, rol, pms);
 	}
-	
+	public String getrol() {
+		return rol;
+	}
 	public void setHabitacionesHotel(ArrayList<Habitacion> habitaciones) {
 		habitacionesHotel = habitaciones;
 	}
