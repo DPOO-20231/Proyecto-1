@@ -70,7 +70,7 @@ public class Loader
             String conceptoS= partesS[2];
             Consumible vservicio= buscarServicio(servicios);
             if (vservicio == null){
-                vservicio = new Servicios;
+                vservicio = new Restaurante(IDS, conceptoS);
                 servicios.add(vservicio);
 
 
