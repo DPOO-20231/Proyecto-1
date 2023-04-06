@@ -165,8 +165,12 @@ public class Habitacion {
 	
 	
 	
-	public void cancelarReserva(Reserva reserva) {
-		reservas.remove(reserva);
+	public void cancelarReserva(String documento) {
+		for (Reserva r : reservas) {
+			if (r.getDocumento().equals(documento)){
+				reservas.remove(reservas.indexOf(r));
+			}
+		}
 	}
 
 

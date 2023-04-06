@@ -57,7 +57,10 @@ public class Reserva {
 		}
 		return rta;
 	}
-
+	
+	public ArrayList<Huesped> getListaHuespedes(){
+		return huespeds;
+	}
 
 
 	public ArrayList<Object> getHuespeds() {
