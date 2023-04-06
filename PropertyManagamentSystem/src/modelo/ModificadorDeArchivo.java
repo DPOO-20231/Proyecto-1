@@ -55,7 +55,7 @@ public class ModificadorDeArchivos {
             Cama cama = new Cama(size, capacidad_1,uso);
             camas.add(cama);
         }
-        habitacion.setCama(camas);
+        habitacion.setCamas(camas);
         System.out.println("Modificación exitosamente.");
     }
     public static void modificarUbicacion(Habitacion habitacion) {
@@ -102,7 +102,7 @@ public class ModificadorDeArchivos {
         String producto = scanner.nextLine();
         scanner.nextLine(); 
         Tarifa tarifas = new Tarifa(valor_, fechainicial,fechafinal,producto);
-        habitacion.setTarifa(tarifas);
+        habitacion.setTarifas(tarifas);
         System.out.println("Modificación exitosamente.");
     }
     public static void modificarElementos(Habitacion habitacion) {
