@@ -1,9 +1,11 @@
 package modelo;
-
 import modelo.Producto;
 import modelo.Habitacion;
 import modelo.Cama;
+import modelo.ModificadorDeArchivos;
 import modelo.PropertyManagmentSystem;
+import modelo.Tarifa;
+import modelo.Empleado;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -13,7 +15,7 @@ import java.util.Date;
 import java.util.Scanner;
 import java.util.HashMap;
 
-public class Admin {
+public class Administrador {
     public void cargarHabitaciones_txt(ArrayList<Habitacion> habitaciones, String archivo) {
         try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
             String linea;
@@ -107,39 +109,33 @@ public class Admin {
                 elementosCobro1.put(name, price);
             }
             
-            System.out.print("Elementos de cobro: ");
-            String elementosDeCobro = scanner.nextLine();
-            System.out.print("Elementos adicionales: ");
-            String elementosAdicionales = scanner.nextLine();
-            ArrayList<Tarifa> tarifas = new ArrayList<>();
-            for (int i = 0; i < 1; i++) {
-                System.out.printf("Tarifa %d:%n", i + 1);
-                System.out.print("Valor ");
-                double valor = scanner.nextDouble();
-                System.out.print("año inicio: ");
-                long anoinicio = (long) scanner.nextDouble();
-                System.out.print("mes inicio: ");
-                long mesinicio = (long) scanner.nextDouble();
-                System.out.print("día inicio: ");
-                long diainicio = (long) scanner.nextDouble();
-                long miliseconds = (long) ((mesinicio* 2629743833.3) + (diainicio*86400000)+(anoinicio*3600000));
-                scanner.nextLine(); 
-                Date fechainicial = new Date(miliseconds); 
-                System.out.print("año final: ");
-                long anofinal = (long) scanner.nextDouble();
-                System.out.print("mes final: ");
-                long mesfinal = (long) scanner.nextDouble();
-                System.out.print("día final: ");
-                long diafinal = (long) scanner.nextDouble();
-                long milisecondsfinal = (long) ((mesfinal* 2629743833.3) + (diafinal*86400000)+(anofinal*3600000));
-                scanner.nextLine(); 
-                Date fechafinal = new Date(milisecondsfinal);
-                System.out.print("Producto : ");
-                String producto = scanner.nextLine();
-                scanner.nextLine(); 
-                Tarifa tarifa = new Tarifa(valor, fechainicial,fechafinal,producto);
-                tarifas.add(tarifa);
-            }
+            
+            System.out.printf("Tarifa ");
+            System.out.print("Valor ");
+            double valor_ = scanner.nextDouble();
+            System.out.print("año inicio: ");
+            long anoinicio = (long) scanner.nextDouble();
+            System.out.print("mes inicio: ");
+            long mesinicio = (long) scanner.nextDouble();
+            System.out.print("día inicio: ");
+            long diainicio = (long) scanner.nextDouble();
+            long miliseconds = (long) ((mesinicio* 2629743833.3) + (diainicio*86400000)+(anoinicio*3600000));
+            scanner.nextLine(); 
+            Date fechainicial = new Date(miliseconds); 
+            System.out.print("año final: ");
+            long anofinal = (long) scanner.nextDouble();
+            System.out.print("mes final: ");
+            long mesfinal = (long) scanner.nextDouble();
+            System.out.print("día final: ");
+            long diafinal = (long) scanner.nextDouble();
+            long milisecondsfinal = (long) ((mesfinal* 2629743833.3) + (diafinal*86400000)+(anofinal*3600000));
+            scanner.nextLine(); 
+            Date fechafinal = new Date(milisecondsfinal);
+            System.out.print("Producto : ");
+            String producto = scanner.nextLine();
+            scanner.nextLine(); 
+            Tarifa tarifas = new Tarifa(valor_, fechainicial,fechafinal,producto);
+            
             Habitacion habitacion = new Habitacion(idHabi, ubicacion, capacidad, tipo, numcamas,elementosDeCobro, 
                     tarifas, camas);
             habitaciones.add(habitacion);
@@ -156,19 +152,35 @@ public class Admin {
                 System.out.println("1. Capacidad");
                 System.out.println("2. Número de camas");
                 System.out.println("3. Camas");
+                System.out.println("4. Ubicacion");
+                System.out.println("5. tipo");
+                System.out.println("6. Elementos de cobro");
+                System.out.println("7. tarifa");
                 System.out.print("Ingrese el número de opción: ");
                 int opcion = scanner.nextInt();
                 scanner.nextLine(); 
                 switch (opcion) {
                     case 1:
-                        modificarCapacidad(habitacion);
+                    	ModificadorDeArchivos.modificarCapacidad(habitacion);
                         break;
                     case 2:
-                        modificarNumCamas(habitacion);
+                    	ModificadorDeArchivos.modificarNumCamas(habitacion);
                         break;
                     case 3:
-                        modificarCamas(habitacion);
+                    	ModificadorDeArchivos.modificarCamas(habitacion);
                         break;
+                    case 4:
+                    	ModificadorDeArchivos.modificarUbicacion(habitacion);
+                        break;
+                    case 5:
+                    	ModificadorDeArchivos.modificarTipo(habitacion);
+                        break;
+                    case 6:
+                    	ModificadorDeArchivos.modificarElementos(habitacion);
+                        break;
+                    case 7:
+                    	ModificadorDeArchivos.modificarTarifa(habitacion);
+                    	break;
                     default:
                         System.out.println("Opción inválida.");
                         break;
@@ -178,43 +190,9 @@ public class Admin {
         }
         System.out.printf("No se encontró la habitación con ID %s.%n", idHabi);
     }
-    public void modificarCapacidad(Habitacion habitacion) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.printf("Capacidad actual: %d%n", habitacion.getCapacidad());
-        System.out.print("Ingrese la nueva capacidad: ");
-        int nuevaCapacidad = scanner.nextInt();
-        habitacion.setCapacidad(nuevaCapacidad);
-        System.out.println("Capacidad modificada exitosamente.");
-    }
-
-    public void modificarNumCamas(Habitacion habitacion) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.printf("Número de camas actual: %d%n", habitacion.getNumcamas());
-        System.out.print("Ingrese el nuevo número de camas: ");
-        int nuevoNumCamas = scanner.nextInt();
-        habitacion.setNumcamas(nuevoNumCamas);
-        System.out.println("Número de camas modificado exitosamente.");
-    }
-    public void modificarCamas(Habitacion habitacion) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Camas actuales:");
-        for (Cama cama : habitacion.getCamas()) {
-            System.out.println(cama);
-        }
-        System.out.print("Ingrese la posición de la cama a modificar (1, 2, ...): ");
-        int posicion = scanner.nextInt();
-        scanner.nextLine(); 
-        if (posicion < 1 || posicion > habitacion.getCamas().size()) {
-            System.out.println("Posición inválida.");
-            return;
-        }
-        Cama cama = habitacion.getCamas().get(posicion - 1);
-        System.out.printf("Cama seleccionada: %s%n", cama);
-        System.out.print("Ingrese el nuevo tipo de cama: ");
-        String nuevoTipoCama = scanner.nextLine();
-        cama.setTipo(nuevoTipoCama);
-        System.out.println("Cama modificada exitosamente.");
-    }
+    
+    
+    
     public void verTodasLasHabitaciones(ArrayList<Habitacion> habitaciones) {
         for (Habitacion habitacion : habitaciones) {
             System.out.println(habitacion.toString());
@@ -267,19 +245,19 @@ public class Admin {
                 scanner.nextLine(); 
                 switch (opcion) {
                     case 1:
-                        modificarDescripcion(producto);
+                    	ModificadorDeArchivos.modificarDescripcion(producto);
                         break;
                     case 2:
-                        modificarDisponibilidad(producto);
+                    	ModificadorDeArchivos.modificarDisponibilidad(producto);
                         break;
                     case 3:
-                        modificarPrecio(producto);
+                    	ModificadorDeArchivos.modificarPrecio(producto);
                         break;
                     case 4:
-                        modificarInicio(producto);
+                    	ModificadorDeArchivos.modificarInicio(producto);
                         break;
                     case 5:
-                        modificarFinal(producto);
+                    	ModificadorDeArchivos.modificarFinal(producto);
                         break;
                     default:
                         System.out.println("Opción inválida.");
@@ -290,49 +268,6 @@ public class Admin {
         }
         System.out.printf("No se encontró la habitación con ID %s.%n", idHabi);
     }
-    public void modificarDescripcion(Producto producto) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.printf("Capacidad actual: %d%n", producto.getDescripcion());
-        System.out.print("Ingrese la nueva versión: ");
-        String nuevo = scanner.nextLine();
-        producto.setDescripcion(nuevo);
-        System.out.println("Capacidad modificada exitosamente.");
-    }
-    public void modificarDisponibilidad(Producto producto) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.printf("Capacidad actual: %d%n", producto.getDisponibleHabitacion());
-        System.out.print("Ingrese la nueva versión: ");
-        String nuevo = scanner.nextLine();
-        producto.setDisponibleHabitacion(nuevo);
-        System.out.println("Capacidad modificada exitosamente.");
-    }
-    public void modificarPrecio(Producto producto) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.printf("Capacidad actual: %d%n", producto.getPrecio());
-        System.out.print("Ingrese la nueva versión: ");
-        int nuevo = scanner.nextInt();
-        producto.setPrecio(nuevo);
-        System.out.println("Capacidad modificada exitosamente.");
-    }
-    public void modificarInicio(Producto producto) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.printf("Capacidad actual: %d%n", producto.getInicioDisponible());
-        System.out.print("Ingrese la nueva versión: ");
-        String in = scanner.nextLine();
-        LocalTime inicioDisponible = LocalTime.parse(in);
-        producto.setInicioDisponible(inicioDisponible);
-        System.out.println("Capacidad modificada exitosamente.");
-    }
-    public void modificarFinal(Producto producto) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.printf("Capacidad actual: %d%n", producto.getFinDisponible());
-        System.out.print("Ingrese la nueva versión: ");
-        String in = scanner.nextLine();
-        LocalTime inicioDisponible = LocalTime.parse(in);
-        producto.setFinDisponible(inicioDisponible);
-        System.out.println("Capacidad modificada exitosamente.");
-    }
-    
     
     public void cargarPersonal(HashMap<String, Empleado> diccionario) {
     	Scanner scanner = new Scanner(System.in);
