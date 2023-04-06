@@ -1,5 +1,7 @@
 package modelo;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -7,14 +9,14 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import modelo.Admin;
+import modelo.Administrador;
 import modelo.Consumible;
-import modelo.Admin;
 import modelo.Recepcionista;
 import modelo.Empleado;
 import modelo.Reserva;
 import modelo.Habitacion;
 import modelo.Usuario;
+import modelo.Loader;
 
 public class PropertyManagamentSystem {
 	private ArrayList<Consumible> servicios;
@@ -23,10 +25,30 @@ public class PropertyManagamentSystem {
 	private ArrayList<Reserva> ConsultaReserva;
 	private ArrayList<Recepcionista> opcionesRecepcionista;
 	private ArrayList<Usuario> usuarios;
-	private Map<String, Empleado> empleados = new HashMap<String, Empleado>();
-
-
+	private Map<String, Empleado> empleados;
 	
+	/**
+	 * 
+	 */
+	@SuppressWarnings("unchecked")
+	public PropertyManagamentSystem()
+	{
+		try {
+			ArrayList<Object> DataC = Loader.cargarData(this);
+			this.empleados = (Map<String, Empleado>) DataC.get(0);
+			this.servicios = (ArrayList<Consumible>) DataC.get(1);
+			
+
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+
 	public ArrayList<Habitacion> getHabitaciones(){
 		return habitaciones;
 	}
@@ -41,12 +63,21 @@ public class PropertyManagamentSystem {
 	{
 		String rol="No encontrado";
 		Empleado elempleado= null;
-		for (int i =0; i< usuarios.size() && elempleado== null; i++)
+			
+		elempleado = empleados.get(IDusuario);
+		if (elempleado == null)
 		{
-			if (usuarios.get(i).getId().equals(IDusuario))
-				if (usuarios.get(i).getPassword().equals(Contraseña))
-				elempleado = empleados.get(IDusuario);
-				rol=elempleado.getrol();;
+			rol = "ID erroneo";
+		}
+		else 
+		{
+			if (elempleado.getPassword().equals(Contraseña)){
+			rol=elempleado.getrol();;
+			}
+			else {
+				rol = "contraseña erronea";
+
+		}
 		}
 		return rol;
 	}
