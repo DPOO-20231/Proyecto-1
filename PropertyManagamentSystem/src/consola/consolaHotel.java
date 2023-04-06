@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 import modelo.PropertyManagamentSystem;
-import modelo.Loader;
+
 
 public class consolaHotel {
 
@@ -31,14 +31,15 @@ public class consolaHotel {
 					{
 					Rol = VerifyLogin();
 					if (Rol=="Administrador"){
-						opcionesAdmin();
-						int OpcionA = Integer.parseInt(input("Por favor seleccione una opción"));}
+						Admin();
+						continuar = false;
+						}
 					else if (Rol=="Recepcionista"){
-						opcionesRecepcionista();
-						int OpcionR = Integer.parseInt(input("Por favor seleccione una opción"));}
+						Recep();
+						continuar = false;}
 					else if (Rol=="Empleado"){
-						opcionesEmpleado();
-						int OpcionE = Integer.parseInt(input("Por favor seleccione una opción"));}
+						Emple();
+						continuar = false;}
 					
 
 
@@ -56,6 +57,150 @@ public class consolaHotel {
 			}
 		}
 	}
+public void Admin(){
+opcionesAdmin();
+Boolean elige = true;
+while (elige){
+	try
+	{
+		int Opcion = Integer.parseInt(input("Por favor seleccione una opción"));
+		if (Opcion == 1)
+		{
+
+		}
+		else if (Opcion == 2)
+		{
+			
+		}
+		else if (Opcion == 3)
+		{
+			
+		}
+		else if (Opcion == 4)
+		{
+			
+		}
+		else if (Opcion == 5)
+		{
+			
+		}
+		else if (Opcion == 6)
+		{
+			System.out.println("Saliendo de la aplicación ...");
+			elige = false;
+		}
+	}
+	catch (NumberFormatException e)
+	{
+		System.out.println("Debe seleccionar uno de los números de las opciones.");
+	}
+}
+}
+public void Emple(){
+	opcionesEmpleado();
+	Boolean elige = true;
+	while (elige){
+	try
+	{
+		int Opcion = Integer.parseInt(input("Por favor seleccione una opción"));
+		if (Opcion == 1)
+		{
+
+		}
+		else if (Opcion == 2)
+		{
+			
+		}
+		else if (Opcion == 3)
+		{
+			
+		}
+		else if (Opcion == 4)
+		{
+			
+		}
+		else if (Opcion == 5)
+		{
+			
+		}
+		else if (Opcion == 6)
+		{
+			
+		}
+		else if (Opcion == 7)
+		{
+			
+		}
+		else if (Opcion == 8)
+		{
+			
+		}
+		else if (Opcion == 9)
+		{
+			System.out.println("Saliendo de la aplicación ...");
+			elige = false;
+		}
+	}
+	catch (NumberFormatException e)
+	{
+		System.out.println("Debe seleccionar uno de los números de las opciones.");
+	}
+}
+
+
+}
+public void Recep(){
+	opcionesRecepcionista();
+	Boolean elige = true;
+	while (elige){
+	try
+	{
+		int Opcion = Integer.parseInt(input("Por favor seleccione una opción"));
+		if (Opcion == 1)
+		{
+
+		}
+		else if (Opcion == 2)
+		{
+			
+		}
+		else if (Opcion == 3)
+		{
+			
+		}
+		else if (Opcion == 4)
+		{
+			
+		}
+		else if (Opcion == 5)
+		{
+			
+		}
+		else if (Opcion == 6)
+		{
+			
+		}
+		else if (Opcion == 7)
+		{
+			
+		}
+		else if (Opcion == 8)
+		{
+			System.out.println("Saliendo de la aplicación ...");
+			elige = false;
+		}
+	}
+	catch (NumberFormatException e)
+	{
+		System.out.println("Debe seleccionar uno de los números de las opciones.");
+	}
+}
+}
+
+
+
+
+}
 public void FirstOpcion()
 	{
 		System.out.println("\nBienvenido al Property Managament System\n");

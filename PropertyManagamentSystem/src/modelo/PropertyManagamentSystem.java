@@ -40,7 +40,7 @@ public class PropertyManagamentSystem {
 			ArrayList<Object> DataC = Loader.cargarData(this);
 			this.empleados = (Map<String, Empleado>) DataC.get(0);
 			this.servicios = (ArrayList<Consumible>) DataC.get(1);
-			
+
 
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -60,7 +60,10 @@ public class PropertyManagamentSystem {
 		return servicios;
 	}
 	
-
+	public void cargarHabitaciones(ArrayList<Habitacion> habitaciones, String Namefile)
+	{
+		
+	}
 
 	public String VerifyLogin(String IDusuario, String Contraseña)
 	{
