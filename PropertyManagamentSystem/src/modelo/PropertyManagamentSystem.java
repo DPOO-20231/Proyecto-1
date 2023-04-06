@@ -1,6 +1,7 @@
 package modelo;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class PropertyManagamentSystem<Administrador> {
 	private ArrayList<Consumible> servicios;
@@ -10,6 +11,7 @@ public class PropertyManagamentSystem<Administrador> {
 	private Administrador Admin;
 	private ArrayList<Recepcionista> opcionesRecepcionista;
 	private ArrayList<Empleado> opcionesEmpleado;
+	private HashMap<String, ArrayList<String>> habitacionesOcupadas;
 	
 	
 	public ArrayList<Habitacion> getHabitaciones(){

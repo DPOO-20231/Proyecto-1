@@ -73,6 +73,42 @@ public class Habitacion {
 
 
 
+	public void setIdHabi(String idHabi) {
+		this.idHabi = idHabi;
+	}
+
+	public void setUbicacion(String ubicacion) {
+		this.ubicacion = ubicacion;
+	}
+
+	public void setCapacidad(int capacidad) {
+		this.capacidad = capacidad;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
+	public void setNumCamas(int numCamas) {
+		this.numCamas = numCamas;
+	}
+
+	public void setElementosDeCobro(HashMap<String, Integer> elementosDeCobro) {
+		this.elementosDeCobro = elementosDeCobro;
+	}
+
+	public void setReservas(ArrayList<Reserva> reservas) {
+		this.reservas = reservas;
+	}
+
+	public void setTarifas(ArrayList<Tarifa> tarifas) {
+		this.tarifas = tarifas;
+	}
+
+	public void setCamas(ArrayList<Cama> camas) {
+		this.camas = camas;
+	}
+
 	public ArrayList<Object> getElementosAdicionales() {
 		ArrayList<Object> rta = new ArrayList<>();
 		for (Cama item:elementosAdicionales) {
@@ -144,8 +180,18 @@ public class Habitacion {
 	public void setHuespeds(ArrayList<Huesped> huespeds) {
 		this.huespeds = huespeds;
 	}
+	
+	public Reserva getReservaEspecifica(Date date) {
+		for (Reserva item:reservas) {
+			Date fechaI = item.getDateInicio();
+			Date fechaF = item.getDateFin();
+			if (date.after(fechaI) && date.before(fechaF)) {
+				return item;
+			}
+		}
+		return null;
 
-
+	}
 
 	public ArrayList<Object> getDescripcion() {
 		ArrayList<Object> descripcion = new ArrayList<Object>();
@@ -154,7 +200,6 @@ public class Habitacion {
 		descripcion.add(getCapacidad());
 		descripcion.add(getTipo());
 		descripcion.add(getNumCamas());
-		descripcion.add(getElementosAdicionales());
 		descripcion.add(getElementosDeCobro());
 		descripcion.add(getCamas());
 		return descripcion;
